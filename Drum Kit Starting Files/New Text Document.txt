@@ -1,0 +1,103 @@
+var buttonList = document.querySelectorAll("button")
+
+for (let i = 0; i < buttonList.length; i++)
+{
+    buttonList[i].addEventListener("click", function()
+    {
+        var buttonInnerHTML = this.innerHTML;
+        generator(buttonInnerHTML);
+
+        buttonList[i].classList.add("pressed");
+
+        setTimeout(function ()
+        {
+            buttonList[i].classList.remove("pressed");
+        }, 200);
+
+    } );
+    
+    
+}
+
+document.addEventListener("keydown", function(event)
+{
+    generator(event.key);
+    colorGenerator(event.key);
+
+}
+);
+
+function generator (target) 
+{
+    let audio;
+    
+    switch (target)
+    {
+        
+        case "w":
+
+            audio = new Audio("sounds/crash.mp3");
+            audio.play();
+
+            break;
+
+        case "a":
+
+            audio = new Audio("sounds/kick-bass.mp3");
+            audio.play();
+
+            break;
+        
+        case "s":
+
+            audio = new Audio("sounds/snare.mp3");
+            audio.play();
+
+            break;
+
+        case "d":
+
+            audio = new Audio("sounds/tom-1.mp3");
+            audio.play();
+
+            break;
+
+        case "j":
+
+            audio = new Audio("sounds/tom-2.mp3");
+            audio.play();
+
+        break;
+
+        case "k":
+
+            audio = new Audio("sounds/tom-3.mp3");
+            audio.play();
+
+        break;
+
+        case "l":
+
+            audio = new Audio("sounds/tom-4.mp3");
+            audio.play();
+
+        break;
+
+    }
+}
+
+function colorGenerator (key)
+{
+    let pressed = document.querySelector("." + key);
+
+    pressed.classList.add("pressed");
+    pressed.style.color = "white";
+
+    setTimeout(function () {
+        pressed.classList.remove("pressed");
+        pressed.style.color = "#DA0463";
+    }, 200);
+    
+
+
+}
